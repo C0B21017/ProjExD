@@ -1,4 +1,6 @@
 import random
+import datetime
+
 alphabet="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 alphabet=list(alphabet)
 choice_num=8
@@ -28,10 +30,11 @@ def kaitou(d):
             else:
                 print("失敗！またチャレンジしてね")
 
-print(loss)
+loss=mondai()
+st=datetime.datetime.now()
 kaitou(loss)
-
-#時間計測つける
+ed=datetime.datetime.now()
+print((ed-st).seconds+"秒！！")
             
 
             
