@@ -35,6 +35,12 @@ st=datetime.datetime.now()
 kaitou(loss)
 ed=datetime.datetime.now()
 print((ed-st).seconds+"秒！！")
+
+#個人的反省点
+#try文の追加をしてエラーの処理を行うべきである。
+#変数名が長すぎて読みにくくなっている。
+
+#コメント対応しました。
             
 
             
