@@ -34,7 +34,7 @@ operation=["=","+","-"]    #コメント#5
 x, y = 0, 1     #９の電卓初期位置
 
 for num in (nums): #数字並べ
-    btn = tk.Button(root,text=num,font=("Times New Roman",30),width=4,height=1,)
+    btn = tk.Button(root,text=num,font=("Times New Roman",30),width=4,height=1)
     btn.bind("<1>",button_click)
     btn.grid(row=y, column=x)
     x += 1
@@ -44,7 +44,7 @@ for num in (nums): #数字並べ
 
 for ope in (operation):
     if  ope == "=":
-        btn = tk.Button(root,text=ope,font=("Times New Roman",30),width=4,height=1,)
+        btn = tk.Button(root,text=ope,font=("Times New Roman",30),width=4,height=1)
         btn.bind("<1>",click_equal)
         btn.grid(row=y, column=x)
         x += 1
@@ -52,7 +52,7 @@ for ope in (operation):
             y += 1
             x  = 0
     else:
-        btn = tk.Button(root,text=ope,font=("Times New Roman",30),width=4,height=1,)
+        btn = tk.Button(root,text=ope,font=("Times New Roman",30),width=4,height=1)
         btn.bind("<1>",button_click)
         btn.grid(row=y, column=x)
         x += 1
@@ -62,3 +62,4 @@ for ope in (operation):
 root.mainloop()
 
 #コメント対応しました　#5
+#コメント対応しました　#6
