@@ -12,6 +12,22 @@ def key_up(event):
     key = ""
     print(key)
 
+def main_proc():
+    global cx, cy
+    if key=="w":
+        cy -= 20
+    
+    if key=="s":
+        cy += 20
+    
+    if key=="a":
+        cx -= 20
+    
+    if key=="d":
+        cx += 20
+    canvas.coords("tori",cx,cy)
+    root.after(100,main_proc)
+
 if __name__=="__main__":
     root = tk.Tk()
     root.title("迷えるこうかとん")#練習1
@@ -26,6 +42,8 @@ if __name__=="__main__":
     key = ""
     root.bind("<KeyPress>",key_down)
     root.bind("<KeyRelease>",key_up)
+
+    main_proc()
 
     canvas.pack()
     root.mainloop()
