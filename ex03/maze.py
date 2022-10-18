@@ -6,8 +6,11 @@ if __name__=="__main__":
     root = tk.Tk()
     root.title("迷えるこうかとん")#練習1
     can = tk.Canvas
-    tori =tk.PhotoImage(file="fig/5.png")
-    cx, cy = 1500, 900
-    canvas=can(root, width=cx, height=cy, bg="black")
+    canvas=can(root, width=1500, height=900, bg="black")
+
+    cx, cy = 300,400
+    tori =tk.PhotoImage(file="fig/9.png")
+    canvas.create_image(cx,cy,image=tori,tag="tori")
+
     canvas.pack()
     root.mainloop()
