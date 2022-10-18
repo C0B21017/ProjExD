@@ -17,33 +17,17 @@ def key_up(event):
 def main_proc():
     global mx, my,flag
     
-    if key=="w":
+    if (key=="w" or key=="Up") and maze[my-1][mx]!=1:
         my -= 1
     
-    if key=="s":
+    if (key=="s" or key=="Down") and maze[my+1][mx]!=1:
         my += 1
     
-    if key=="a":
+    if (key=="a" or key=="Left") and maze[my][mx-1]!=1:
         mx -= 1
     
-    if key=="d":
+    if (key=="d" or key=="Right") and maze[my][mx+1]!=1:
         mx += 1
-
-    if maze[my][mx]!=1:
-        pass
-    else:
-        if key=="w" or key=="UP":
-            my += 1
-        
-        if key=="s" or key=="DOWN":
-            my -= 1
-        
-        if key=="a" or key=="LEFT":
-            mx += 1
-        
-        if key=="d" or key=="RIGHT":
-            mx -= 1
-
 
     cx,cy = mx*100+50, my*100+50
     canvas.coords("tori",cx,cy)
