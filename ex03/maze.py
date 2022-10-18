@@ -36,6 +36,9 @@ if __name__=="__main__":
     can = tk.Canvas #練習2
     canvas=can(root, width=1500, height=900, bg="black")
 
+    maze=mm.make_maze(15,9)
+    mm.show_maze(canvas,maze)
+
     cx, cy = 300,400 #練習3
     tori =tk.PhotoImage(file="fig/9.png")
     canvas.create_image(cx,cy,image=tori,tag="tori")
@@ -45,7 +48,6 @@ if __name__=="__main__":
     root.bind("<KeyRelease>",key_up)
 
     main_proc()
-    mm.make_maze(15,9)
 
     canvas.pack()
     root.mainloop()
