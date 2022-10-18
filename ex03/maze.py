@@ -7,6 +7,11 @@ def key_down(event):
     print(key)
 
 
+def key_up(event):
+    global key
+    key = ""
+    print(key)
+
 if __name__=="__main__":
     root = tk.Tk()
     root.title("迷えるこうかとん")#練習1
@@ -20,6 +25,7 @@ if __name__=="__main__":
 
     key = ""
     root.bind("<KeyPress>",key_down)
+    root.bind("<KeyRelease>",key_up)
 
     canvas.pack()
     root.mainloop()
