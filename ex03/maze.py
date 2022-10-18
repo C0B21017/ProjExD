@@ -28,6 +28,7 @@ def main_proc():
     
     if (key=="d" or key=="Right") and maze[my][mx+1]!=1:
         mx += 1
+            #7 コメント対応しました
 
     cx,cy = mx*100+50, my*100+50
     canvas.coords("tori",cx,cy)
