@@ -38,19 +38,23 @@ def main():
 
         #練習4
         key_status = pg.key.get_pressed()
-        if key_status[pg.K_UP]: tori_rct.centery += -1
-        if key_status[pg.K_DOWN]: tori_rct.centery += 1
-        if key_status[pg.K_LEFT]: tori_rct.centerx += -1
-        if key_status[pg.K_RIGHT]: tori_rct.centerx += 1
+        if key_status[pg.K_UP] and tori_rct.centery-1 > 0 + (tori_rct.height//2) : 
+            tori_rct.centery += -1
+        if key_status[pg.K_DOWN] and tori_rct.centery+1 < scrn_rct.height - (tori_rct.height//2):
+            tori_rct.centery += 1
+        if key_status[pg.K_LEFT] and tori_rct.centerx-1 > 0 +(tori_rct.width//2):
+            tori_rct.centerx += -1
+        if key_status[pg.K_RIGHT] and tori_rct.centerx+1 < scrn_rct.width - (tori_rct.width//2):
+            tori_rct.centerx += 1
 
         bomb_rect.centerx += vx
         bomb_rect.centery += vy
 
-        if not 0 <= bomb_rect.centerx + vx <= scrn_rct.width:
+        if not 0 <= bomb_rect.centerx + vx <= scrn_rct.width: #画面内にないならば
             bomb_rect.centerx += -vx
             vx *= -1
         
-        if not 0 <= bomb_rect.centery + vy <= scrn_rct.height:
+        if not 0 <= bomb_rect.centery + vy <= scrn_rct.height: #画面内にないならば
             bomb_rect.centery += -vy
             vy *= -1
         
@@ -60,6 +64,8 @@ def main():
         scrn_sfc.blit(bomb_sfc,bomb_rect)#ボムblit
 
         pg.display.update()
+
+# def check_bound(obj,scrn_rct):
 
 if __name__=="__main__":
     pg.init()
