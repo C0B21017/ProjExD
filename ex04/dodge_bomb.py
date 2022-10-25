@@ -58,12 +58,13 @@ def main():
             bomb_rect.centery += -vy
             vy *= -1
         
-
-
+        if tori_rct.colliderect(bomb_rect): #こうかとんと爆弾がぶつかっているか判定
+            return
         scrn_sfc.blit(tori_sfc,tori_rct) #こうかとんブリット
         scrn_sfc.blit(bomb_sfc,bomb_rect)#ボムblit
 
         pg.display.update()
+
 
 # def check_bound(obj,scrn_rct):
 
