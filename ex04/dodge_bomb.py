@@ -53,16 +53,17 @@ def main():
         #練習4
         if mode == 0 :
             key_status = pg.key.get_pressed()
-            if key_status[pg.K_UP]  and tori_rct.centery-1 > 0 + (tori_rct.height//2) : 
+            if key_status[pg.K_UP]  and tori_rct.top > 0: 
                 tori_rct.centery -= 1
-            if key_status[pg.K_DOWN] and tori_rct.centery+1 < scrn_rct.height - (tori_rct.height//2):
+            if key_status[pg.K_DOWN] and tori_rct.bottom < scrn_rct.height:
                 tori_rct.centery += 1
-            if key_status[pg.K_LEFT] and tori_rct.centerx-1 > 0 +(tori_rct.width//2):
+            if key_status[pg.K_LEFT] and tori_rct.left > 0:
                 tori_rct.centerx -= 1
-            if key_status[pg.K_RIGHT] and tori_rct.centerx+1 < scrn_rct.width - (tori_rct.width//2):
+            if key_status[pg.K_RIGHT] and tori_rct.right < scrn_rct.width:
                 tori_rct.centerx += 1
                 #9 コメント対応しました
-                
+                #10 コメント対応しました
+
         if mode == 1 :
             tori_rct.center = pg.mouse.get_pos()
         #bom1
