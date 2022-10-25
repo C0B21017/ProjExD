@@ -12,7 +12,7 @@ def main():
     tori_sfc = pg.image.load("ex04/fig/6.png")
     tori_sfc = pg.transform.rotozoom(tori_sfc, 0, 2.0)
     tori_rct = tori_sfc.get_rect()
-    tori_rct = 900,400
+    tori_rct.center = 900,400
     
 
     clock = pg.time.Clock() #タイムインスタンス作成
@@ -23,6 +23,13 @@ def main():
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 return
+
+        #練習4
+        key_status = pg.key.get_pressed()
+        if key_status[pg.K_UP]: tori_rct.centery += -1
+        if key_status[pg.K_DOWN]: tori_rct.centery += 1
+        if key_status[pg.K_LEFT]: tori_rct.centerx += -1
+        if key_status[pg.K_RIGHT]: tori_rct.centerx += 1
 
         scrn_sfc.blit(tori_sfc,tori_rct)
         pg.display.update()
