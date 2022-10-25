@@ -22,7 +22,9 @@ def main():
     bomb_sfc.set_colorkey((0,0,0))
     pg.draw.circle(bomb_sfc, (255,0,0),(10,10), 10 ) #円を描く
     bomb_rect = bomb_sfc.get_rect()
-    bomb_rect.center = random.randint(0,scrn_rct.width), random.randint(0,scrn_rct.height) 
+    bomb_rect.center = random.randint(0,scrn_rct.width), random.randint(0,scrn_rct.height)
+    vx = 1
+    vy = 1 
     
 
     clock = pg.time.Clock() #タイムインスタンス作成
@@ -40,6 +42,19 @@ def main():
         if key_status[pg.K_DOWN]: tori_rct.centery += 1
         if key_status[pg.K_LEFT]: tori_rct.centerx += -1
         if key_status[pg.K_RIGHT]: tori_rct.centerx += 1
+
+        bomb_rect.centerx += vx
+        bomb_rect.centery += vy
+
+        if not 0 <= bomb_rect.centerx + vx <= scrn_rct.width:
+            bomb_rect.centerx += -vx
+            vx *= -1
+        
+        if not 0 <= bomb_rect.centery + vy <= scrn_rct.height:
+            bomb_rect.centery += -vy
+            vy *= -1
+        
+
 
         scrn_sfc.blit(tori_sfc,tori_rct) #こうかとんブリット
         scrn_sfc.blit(bomb_sfc,bomb_rect)#ボムblit
