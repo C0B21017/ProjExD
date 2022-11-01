@@ -63,6 +63,40 @@ class Bomb:
         self.vy *= tate
         self.blit(scr) # =scr.sfc.blit(self.sfc, self.rct)
 
+class Weapon:    #未完成
+
+    def __init__(self, img, zoom, xy):
+        sfc = pg.image.load(img)
+        self.sfc = pg.transform.rotozoom(sfc, 0, zoom)
+        self.rct = self.sfc.get_rect()
+        self.rct.center = xy 
+
+    #武器をこうかとんの左上に表示させたい。
+    def blit(self, scr:Bird):
+        pass
+        # scr.sfc.blit(self.scr, self.scr)
+
+    def update(self, scr:Bird):
+        pass
+
+class Music: #追加クラス
+    def __init__(self,file,seconds=None): #(再生ファイル,ファイルの再生時間(s))
+        pg.mixer.music.load(file)
+        if not seconds is None:
+            self.seconds = int(seconds)*1000 # s → ms　に変換
+        else:
+            self.seconds = None  
+        
+    def m_play(self):
+        if self.seconds is None:
+            pg.mixer.music.play(-1)  #BGMを再生する前提で、BGMの場合再生時間を定義せずに無限にする
+        else:
+            pg.mixer.music.play()
+            pg.time.wait(self.seconds)
+    
+    def m_stop(self):
+        pg.mixer.music.stop()
+
 
 def check_bound(obj_rct, scr_rct):
     """
@@ -79,34 +113,36 @@ def check_bound(obj_rct, scr_rct):
 
 
 def main():
-    # 練習1
-    scr = Screen("逃げろ！こうかとん", (1600, 900), "fig/pg_bg.jpg")
+    BGM = Music("mydata/8q2xy-6jd2a.wav")
+    finish_sound = Music("mydata/i1nds-lcae9.wav", 5)
 
-    # 練習3
+    BGM.m_play()
+    
+    scr = Screen("逃げろ！こうかとん", (1200, 800), "fig/pg_bg.jpg")
+
     kkt = Bird("fig/6.png", 2.0, (900, 400))
+    ken = Weapon("mydata/ken.png",2.0,(400,400))
 
-    # 練習5
     bkd = Bomb((255, 0, 0), 10, (+1, +1), scr)
+    bkd2 = Bomb ((255,0,0),10,(-1,-1),scr)
 
-    clock = pg.time.Clock() # 練習1
+    clock = pg.time.Clock()
     while True:
-        scr.blit() # 練習2
+        scr.blit()
 
-        for event in pg.event.get(): # 練習2
+        for event in pg.event.get():
             if event.type == pg.QUIT:
                 return
 
-        # 練習4
         kkt.update(scr)
-
-        # 練習7
         bkd.update(scr)
 
-        # 練習8
         if kkt.rct.colliderect(bkd.rct): # こうかとんrctが爆弾rctと重なったら
+            BGM.m_stop()
+            finish_sound.m_play()
             return
 
-        pg.display.update() #練習2
+        pg.display.update()
         clock.tick(1000)
 
 
