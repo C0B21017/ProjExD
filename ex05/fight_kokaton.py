@@ -3,6 +3,7 @@ import sys
 from random import randint
 
 class Screen:
+
     def __init__(self, title, wh, bgimg):
         pg.display.set_caption(title) #逃げろ！こうかとん
         self.sfc = pg.display.set_mode(wh) #(1600, 900)
@@ -12,7 +13,6 @@ class Screen:
 
     def blit(self):
         self.sfc.blit(self.bgi_sfc, self.bgi_rct)
-
 
 class Bird:
     key_delta = {
@@ -41,7 +41,6 @@ class Bird:
                     self.rct.centerx -= delta[0]
                     self.rct.centery -= delta[1]
         self.blit(scr) # =scr.sfc.blit(self.sfc, self.rct)
-
 
 class Bomb:
     def __init__(self, color, radius, vxy, scr:Screen):
@@ -80,6 +79,7 @@ class Weapon:    #未完成
         pass
 
 class Music: #追加クラス
+
     def __init__(self,file,seconds=None): #(再生ファイル,ファイルの再生時間(s))
         pg.mixer.music.load(file)
         if not seconds is None:
@@ -89,10 +89,13 @@ class Music: #追加クラス
         
     def m_play(self):
         if self.seconds is None:
-            pg.mixer.music.play(-1)  #BGMを再生する前提で、BGMの場合再生時間を定義せずに無限にする
+            pg.mixer.music.play(-1)  #BGMを再生する前提で、BGMの場合再生時間を無限にする
         else:
             pg.mixer.music.play()
-            pg.time.wait(self.seconds)
+            pg.time.wait(self.seconds) 
+            # 
+            #BGMを出して終了する為にBGMの再生時間文だけプログラムを停止して、
+            #return 起動までの時間を稼ぐ
     
     def m_stop(self):
         pg.mixer.music.stop()
@@ -111,7 +114,6 @@ def check_bound(obj_rct, scr_rct):
         tate = -1
     return yoko, tate
 
-
 def main():
     BGM = Music("mydata/8q2xy-6jd2a.wav")
     finish_sound = Music("mydata/i1nds-lcae9.wav", 5)
@@ -127,6 +129,7 @@ def main():
     bkd2 = Bomb ((255,0,0),10,(-1,-1),scr)
 
     clock = pg.time.Clock()
+
     while True:
         scr.blit()
 
@@ -138,8 +141,8 @@ def main():
         bkd.update(scr)
 
         if kkt.rct.colliderect(bkd.rct): # こうかとんrctが爆弾rctと重なったら
-            BGM.m_stop()
-            finish_sound.m_play()
+            BGM.m_stop()    #BGMを止める
+            finish_sound.m_play() #Game Over音を再生する
             return
 
         pg.display.update()
